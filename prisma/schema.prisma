@@ -5,6 +5,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "sqlite"
+//   url      = env("DATABASE_URL")
+// }
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
@@ -14,4 +19,15 @@ model UserComment {
   id Int @default(autoincrement()) @id
   Username String @default("DeveloperCommenter")
   Comments String
+}
+
+model Coupons {
+  id Int @default(autoincrement()) @id
+  CouponCode String
+  DiscountFactor Decimal @default(0.75)
+}
+
+model DeveloperCoupons {
+  id Int @default(autoincrement()) @id
+  CouponCode String @unique
 }
